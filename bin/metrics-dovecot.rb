@@ -40,12 +40,6 @@ class DovecotMetrics < Sensu::Plugin::Metric::CLI::Graphite
          proc: proc(&:to_i),
          default: '24242'
 
-  option :type,
-         short: '-t TYPE',
-         long: '--type TYPE',
-         description: 'dovecot stats type',
-         default: 'global'
-
   option :scheme,
          short: '-s SCHEME',
          long: '--scheme SCHEME',
@@ -54,7 +48,7 @@ class DovecotMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   def run
     sock = TCPSocket.new(config[:host], config[:port])
-    sock.write("EXPORT\t#{config[:type]}\n")
+    sock.write("EXPORT\tglobal\n")
     header = sock.gets.chomp.split(/\s+/)
     values = sock.gets.chomp.split(/\s+/)
     sock.close
