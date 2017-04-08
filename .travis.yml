@@ -10,8 +10,8 @@ rvm:
   - 2.0
   - 2.1
   - 2.2
-  - 2.3
-  - 2.4
+  - 2.3.4
+  - 2.4.1
 
 script:
   - bundle exec rake default
@@ -20,13 +20,10 @@ script:
 
 deploy:
   provider: rubygems
-  api_key: xxx
+  api_key:
+    secure: KawHSEdOqCAN9aLeE/TOK29158BIZ2jfQDrKnE1udfPmGyGe2JSE6WTpTPCvRYSdA/4J4nsZqEL0p8VnnoKseZ0fJlAtMAgWda9WnkpwFK6SrTQWEPOg2iDHeSAb+CjOlSx14VbjY7SZMgH4u9HC2ZDI5q4qtdpoIiZYEJwenRvmsU/uYjXMUMQ7bgsCeiTXuigbV5I1cadrEP24lui19FifVQmy7Ref3c/F75bGSXsf3LhoWMy+mJViv6jOSdDqaPOamT+hOXZybkvnI62+j1cEJQXPZuVvWZE8Z8NnnDXR4WvaeLYp8eODVza0dnCkjjrHwk2ftYrhuZh+14b1O6Y7Fz30huY+RuEe0WhMRJrpbJxyHtN5VUKUt/p3CtgpCVOvhKSAsMG/q+W5hmsfjOk0vLADF0wS7s+WqLqIMpp+GdvU4hGRxqd2PJPytaVIBM7xfcvHUZYOOCBhZS0j2MS6pM4hv0ZNpQXOt43rZKvB+fLWw5YEoqjkVhE0cyN5sy9XvA0vn4vtymU3/1QA6JH3IfKIcactR6dAMdEFuaOHLOhGoy5tQ+C18qdhNCYmPPT5N8Em+uEMSpA6obkUd6PDCVbjVaGGc/PueKNhWeFZXGA5HX14VTwkO90FZFdoTJZ2Rm9DV04RQqrBv1eh0L84GumUzdcdBTic2lcxFq8=
   gem: sensu-plugins-dovecot
   on:
     tags: true
-    rvm: 2.0
-    rvm: 2.1
-    rvm: 2.2
-    rvm: 2.3
-    rvm: 2.4
+    rvm: 2.4.1
     repo: ushis/sensu-plugins-dovecot
