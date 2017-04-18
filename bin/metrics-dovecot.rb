@@ -49,15 +49,20 @@ class DovecotMetrics < Sensu::Plugin::Metric::CLI::Graphite
   def run
     sock = TCPSocket.new(config[:host], config[:port])
     sock.write("EXPORT\tglobal\n")
-    header = sock.gets.chomp.split(/\s+/)
-    values = sock.gets.chomp.split(/\s+/)
+    header = sock.gets.chomp.split
+    values = sock.gets.chomp.split
     sock.close
 
-    # set timestamp from last_update
-    timestamp = values[1].to_i
+    metrics = header.zip(values).to_h
 
-    # output everything except reset_timestamp and last_update
-    header.zip(values)[2..-1].each do |key, value|
+    # remove reset_timestamp
+    metrics.delete('reset_timestamp')
+
+    # set timestamp from last_update
+    timestamp = metrics.delete('last_update').to_i
+
+    # output everything
+    metrics.each do |key, value|
       output "#{config[:scheme]}.#{key}", value, timestamp
     end
 
